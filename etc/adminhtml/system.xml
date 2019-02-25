@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="phoenix_media" translate="label" sortOrder="300">
+            <label>PHOENIX MEDIA</label>
+        </tab>
+        <section id="phoenix_mediastoragesync" translate="label" type="text" sortOrder="3000" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Media Storage Sync</label>
+            <tab>phoenix_media</tab>
+            <resource>Phoenix_MediaStorageSync::config</resource>
+            <group id="general" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0" translate="label">
+                <label>General</label>
+                <field id="enabled" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="url" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                    <label>URL</label>
+                    <comment>Source URL to connect.</comment>
+                </field>
+
+                <field id="http_client_user" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                    <label>HTTP Client User</label>
+                    <comment>User for HTTP BasicAuth.</comment>
+                </field>
+                <field id="http_client_password" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                    <label>HTTP Client Password</label>
+                    <comment>Password used for cURL.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
