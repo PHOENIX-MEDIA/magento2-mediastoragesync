@@ -38,7 +38,7 @@ the static asset.
 
 1. Install the module via Composer:
 ``` 
-composer require phoenix/magento2-mediastoragesync
+composer require phoenix-media/magento2-mediastoragesync
 ```
 2. Enable it
 ``` bin/magento module:enable Phoenix_MediaStorageSync ```
