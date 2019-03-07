@@ -6,10 +6,8 @@
         "magento/module-media-storage": "*"
     },
     "type": "magento2-module",
-    "version": "0.1.0",
-    "license": [
-
-    ],
+    "version": "1.0.0",
+    "license": "MIT",
     "autoload": {
         "files": [
             "registration.php"
@@ -17,13 +15,5 @@
         "psr-4": {
             "Phoenix\\MediaStorageSync\\": ""
         }
-    },
-    "extra": {
-        "map": [
-            [
-                "*",
-                "Phoenix/MediaStorageSync"
-            ]
-        ]
     }
 }

@@ -1,7 +1,18 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Phoenix_MediaStorageSync for Magento 2
+ *
+ *
+ * @category    Phoenix
+ * @package     Phoenix_MediaStorageSync
+ * @license     http://opensource.org/licenses/MIT MIT
+ * @copyright   Copyright (c) 2018 PHOENIX MEDIA GmbH (http://www.phoenix-media.eu)
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Phoenix_MediaStorageSync" setup_version="0.1.0">
+    <module name="Phoenix_MediaStorageSync" setup_version="1.0.0">
         <sequence>
             <module name="Magento_MediaStorage"/>
         </sequence>

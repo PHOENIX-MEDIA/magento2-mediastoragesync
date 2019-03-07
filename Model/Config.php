@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: bjoern
- * Date: 2018-11-29
- * Time: 11:30
+ * Phoenix_MediaStorageSync for Magento 2
+ *
+ *
+ * @category    Phoenix
+ * @package     Phoenix_MediaStorageSync
+ * @license     http://opensource.org/licenses/MIT MIT
+ * @copyright   Copyright (c) 2018 PHOENIX MEDIA GmbH (http://www.phoenix-media.eu)
  */
 
 namespace Phoenix\MediaStorageSync\Model;
