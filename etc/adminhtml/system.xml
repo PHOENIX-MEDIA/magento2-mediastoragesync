@@ -38,6 +38,10 @@
                     <label>HTTP Client Password</label>
                     <comment>Password used for cURL.</comment>
                 </field>
+                <field id="download_limit" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
+                    <label>Download Limit Per Request</label>
+                    <comment>Limit number of files downloaded per HTTP request. Stop downloading after x downloads to not run into endless loops.</comment>
+                </field>
             </group>
         </section>
     </system>

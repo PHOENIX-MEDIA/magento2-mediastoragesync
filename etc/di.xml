@@ -17,4 +17,5 @@
     <type name="Magento\Catalog\Api\ProductAttributeMediaGalleryManagementInterface">
         <plugin name="after_getlist_sync" type="Phoenix\MediaStorageSync\Plugin\Synchronization" sortOrder="1" />
     </type>
+    <type name="Phoenix\MediaStorageSync\Model\Sync" shared="true"/>
 </config>

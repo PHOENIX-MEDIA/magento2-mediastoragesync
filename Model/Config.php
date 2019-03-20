@@ -85,6 +85,18 @@ class Config
     }
 
     /**
+     * Get download limit per request
+     *
+     * @return int
+     */
+    public function getDownloadLimit()
+    {
+        return (int)$this->scopeConfig->getValue(
+            $this->getXmlPathPrefix() . 'download_limit'
+        );
+    }
+
+    /**
      * Return the configuration path prefix
      *
      * @return string

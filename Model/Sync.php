@@ -42,6 +42,16 @@ class Sync
      */
     protected $client;
 
+    /**
+     * @var int
+     */
+    protected $downloadCounter = 0;
+
+    /**
+     * @var int
+     */
+    protected $downloadLimit;
+
 
     /**
      * Sync constructor.
@@ -67,6 +77,7 @@ class Sync
         $this->httpClientFactory = $httpClientFactory;
         $this->logger = $logger;
         $this->exception = $exception;
+        $this->downloadLimit = $this->config->getDownloadLimit();
     }
 
     /**
@@ -98,12 +109,15 @@ class Sync
         }
 
         try {
-            $this->getFileFromServer($src, $target);
-            if ($this->getHttpClient()->getStatus() == 200) {
-                $this->file->setAllowCreateFolders(true);
-                $this->file->open(array('path' => $fileDirectory));
-                $fileSaved = $this->file->write($fileName, $this->getHttpClient()->getBody());
-                $this->file->close();
+            if ($this->downloadLimit > $this->downloadCounter) {
+                $this->getFileFromServer($src, $target);
+                if ($this->getHttpClient()->getStatus() == 200) {
+                    $this->file->setAllowCreateFolders(true);
+                    $this->file->open(array('path' => $fileDirectory));
+                    $fileSaved = $this->file->write($fileName, $this->getHttpClient()->getBody());
+                    $this->file->close();
+                }
+                $this->downloadCounter++;
             }
         } catch (\Exception $exception) {
             $this->logger->critical($exception);
