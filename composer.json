@@ -1,12 +1,12 @@
 {
-    "name": "phoenix/magento2-mediastoragesync",
+    "name": "phoenix-media/magento2-mediastoragesync",
     "description": "The module retrieves files in /media from origin server.",
     "require": {
         "php": "~5.6.0|~7.0.0|~7.1.0|~7.2.0",
         "magento/module-media-storage": "*"
     },
     "type": "magento2-module",
-    "version": "1.2.0",
+    "version": "1.1.0",
     "license": "MIT",
     "autoload": {
         "files": [
