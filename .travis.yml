@@ -1,0 +1,43 @@
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+      - mysql-client
+      - rabbitmq-server
+services:
+  - mysql
+  - rabbitmq
+  - elasticsearch
+
+language: php
+php:
+  - 7.1
+  - 7.2
+
+env:
+  matrix:
+    - MAGENTO_VERSION=2.2
+    - MAGENTO_VERSION=2.3
+    - MAGENTO_VERSION=2.3-develop
+matrix:
+  exclude:
+    - php: 7.2
+      env: MAGENTO_VERSION=2.2
+
+before_install:
+  - git clone --depth=50 --branch=$MAGENTO_VERSION https://github.com/magento/magento2.git /tmp/magento
+  - mysql -uroot -e 'SET @@global.sql_mode = NO_ENGINE_SUBSTITUTION; CREATE DATABASE magento_integration_tests;'
+  - mv /tmp/magento/dev/tests/integration/etc/install-config-mysql.travis.php.dist /tmp/magento/dev/tests/integration/etc/install-config-mysql.php
+  - mkdir -p /tmp/magento/app/code/Phoenix
+  - cp -R $(pwd) /tmp/magento/app/code/Phoenix/MediaStorageSync
+
+install:
+  - cd /tmp/magento
+  - composer install --no-interaction
+  - composer require --dev mikey179/vfsstream
+  - composer require --dev tddwizard/magento2-fixtures
+
+script:
+  - php /tmp/magento/vendor/bin/phpunit -c /tmp/magento/app/code/Phoenix/MediaStorageSync/Test/Integration/phpunit.travis.xml
