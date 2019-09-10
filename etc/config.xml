@@ -14,8 +14,9 @@
     <default>
         <phoenix_mediastoragesync>
             <general>
-                <enabled>0</enabled>
+                <enabled>1</enabled>
                 <download_limit>50</download_limit>
+                <url>{your-remote-url}</url>
             </general>
         </phoenix_mediastoragesync>
     </default>

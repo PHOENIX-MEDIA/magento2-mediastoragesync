@@ -35,22 +35,63 @@ it and the get.php delivers the file. On the second load the web service can dir
 the static asset.
 
 ### How to use
-
-1. Install the module via Composer:
-``` 
+**Install via Composer**
+```
 composer require phoenix-media/magento2-mediastoragesync
 ```
-2. Enable it
-``` bin/magento module:enable Phoenix_MediaStorageSync ```
-3. Install the module and rebuild the DI cache
-``` bin/magento setup:upgrade ```
+
+**Install via Modman**
+```
+modman clone git@github.com:PHOENIX-MEDIA/magento2-mediastoragesync.git
+```
+
+
+**Enable it**
+``` 
+bin/magento module:enable Phoenix_MediaStorageSync 
+```
+
+**Run setup upgrade and rebuild the DI cache**
+``` 
+bin/magento setup:upgrade 
+```
 
 ### How to configure
 
-Find the modules configuration in the PHOENIX MEDIA section of your Magento configuration.
+- Find the modules configuration in the PHOENIX MEDIA section of your Magento configuration.
+- Enable: Enable or disable the functionality
+- URL: Configure the source URL where to retrieve the images (e.g. "https://magento.com/")
 
-Enable: Enable or disable the functionality
+*Optionally configure credentials for BasicAuth*
 
-URL: Configure the source URL where to retrieve the images (e.g. "https://magento.com/")
+### How to download wysiwyg images
+Since wysiwyg images are dispatched via `./pub/get.php`, you can modify the code as shown below.
 
-optionally configure credentials for BasicAuth.
+Find the following code in file `./pub/get.php`
+```php
+if (!$isAllowed($relativePath, $allowedResources)) {
+    require_once 'errors/404.php';
+    exit;
+}
+```
+And replace by the chunk below
+```php
+if (!$isAllowed($relativePath, $allowedResources)) {              
+    /* Customization by MagePsycho - Start */
+    try {
+        $absoluteFilePath = BP . '/pub/' . $relativePath;
+        $absoluteFileUrl = '{your-live-url}/' . $relativePath;
+        $absoluteFileDir = dirname($absoluteFilePath);
+        if (!is_dir($absoluteFileDir)) {
+            mkdir($absoluteFileDir, 777, true);
+        }
+        file_put_contents($absoluteFilePath, file_get_contents(trim($absoluteFileUrl)));
+        file_put_contents(BP . '/log/download-image.log', $absoluteFilePath . ' -> ' . $absoluteFileUrl, FILE_APPEND | LOCK_EX);
+    } catch (Exception $e) {
+        require_once 'errors/404.php';
+        exit;
+    }
+    /* Customization by MagePsycho - End */
+}
+```
+Now your homepage will also look cool!
