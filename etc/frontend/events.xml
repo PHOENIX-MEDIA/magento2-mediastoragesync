@@ -13,6 +13,9 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="catalog_product_load_after">
-        <observer name="product" instance="Phoenix\MediaStorageSync\Observer\ProductObserver" />
+        <observer name="phoenix_media_storage_sync_product_load_after" instance="Phoenix\MediaStorageSync\Observer\ProductObserver" />
+    </event>
+    <event name="catalog_product_collection_load_after">
+        <observer name="phoenix_media_storage_sync_product_collection_load_after" instance="Phoenix\MediaStorageSync\Observer\Product\CollectionObserver" />
     </event>
 </config>
