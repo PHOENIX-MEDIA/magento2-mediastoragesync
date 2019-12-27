@@ -133,6 +133,7 @@ class Sync
      */
     protected function getFileFromServer($src, $target)
     {
+        $src = preg_replace('/\/cache.+?(?=\/)/', '', $src);
         try {
             $fileUri = $this->config->getUrl()
                 . $this->helper->getAssetPath($target)
