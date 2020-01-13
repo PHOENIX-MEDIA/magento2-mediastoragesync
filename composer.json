@@ -6,7 +6,7 @@
         "magento/module-media-storage": "*"
     },
     "type": "magento2-module",
-    "version": "1.1.2",
+    "version": "1.2.0",
     "license": "MIT",
     "autoload": {
         "files": [
