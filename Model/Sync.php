@@ -101,6 +101,10 @@ class Sync
      */
     protected function saveFileFromRemoteServer($src, $target)
     {
+        if (strstr($target, 'media/') !== false) {
+            $src = preg_replace('/^media\//', '', $src);
+        }
+
         $fileSaved = false;
         $fileName = basename($src);
         $fileDirectory = $target;
